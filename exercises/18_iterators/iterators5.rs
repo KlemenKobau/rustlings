@@ -48,6 +48,11 @@ fn count_collection_iterator(collection: &[HashMap<String, Progress>], value: Pr
     // `collection` is a slice of hash maps.
     // collection = [{ "variables1": Complete, "from_str": None, … },
     //               { "variables2": Complete, … }, … ]
+    collection
+        .iter()
+        .flat_map(|x| x.values())
+        .filter(|x| **x == value)
+        .count()
 }
 
 fn main() {
